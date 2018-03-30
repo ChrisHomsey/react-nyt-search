@@ -41,7 +41,7 @@ class Home extends Component {
     handleArticleSave = (headline, author, url, resultIndex) => {
         console.log(headline, author, url);
         API.saveArticle({
-            headline: "asdf",
+            headline: headline,
             author: author,
             url: url
         })
