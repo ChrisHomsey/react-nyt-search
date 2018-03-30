@@ -8,7 +8,7 @@ const Nav = () =>
       <div className="navbar-header">
       </div>
       <ul className="nav navbar-nav navbar-left">
-        <li activeClassName><NavLink to="/" className="active" activeClassName="active">Home</NavLink></li>
+        <li activeClassName><NavLink to="/" activeClassName="active">Home</NavLink></li>
         <li><NavLink to="/saved" activeClassName="active">Saved</NavLink></li>
       </ul>
     </div>
