@@ -10,8 +10,8 @@ export default {
     getSaved: () => {
         return axios.get("/api/articles/");
     },
-    saveArticle: data => {
-        return axios.post("/api/articles/", data);
+    saveArticle: articleData => {
+        return axios.post("/api/articles/", articleData);
     },
     deleteArticle: id => {
         return axios.delete("/api/articles/" + id);

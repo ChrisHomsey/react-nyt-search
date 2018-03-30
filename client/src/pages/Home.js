@@ -5,7 +5,7 @@ import Search from "../components/Search";
 import {Results, Item, SaveBtn} from "../components/Results";
 import Footer from "../components/Footer";
 import { Col, Row, Container } from "../components/Grid";
-import { Input, TextArea, FormBtn } from "../components/Form";
+import { Input, FormBtn } from "../components/Form";
 
 class Home extends Component {
 
@@ -28,7 +28,7 @@ class Home extends Component {
         event.preventDefault();
         //if (this.state.searchTerm && this.startYear && this.endYear) {
             API.searchArticle(this.state.searchTerm, this.state.numRecords, this.state.startYear, this.state.endYear)
-                .then(res => this.setState({ articles: res.data.response.docs, topic: "", searchTerm: "", startYear: "", endYear: "" }))
+                .then(res => this.setState({ articles: res.data.response.docs, searchTerm: "", startYear: "", endYear: "" }))
 		        .catch(err => console.log(err));
         //}
     }
@@ -39,8 +39,9 @@ class Home extends Component {
     // }
 
     handleArticleSave = (headline, author, url, resultIndex) => {
+        console.log(headline, author, url);
         API.saveArticle({
-            headline: headline,
+            headline: "asdf",
             author: author,
             url: url
         })
@@ -103,14 +104,14 @@ class Home extends Component {
                                 key={article._id}
                                 onClick={
                                     () => this.handleArticleSave(
-                                        article.headline.main, 
+                                        article.headline.main,
                                         article.byline.original, 
                                         article.web_url,
                                         index)
                                     }
                             /> 
                             
-                            <div className="well" id="article-well-1">
+                            <div className="well">
                             <a target="_blank" href={article.web_url}><h3 className="articleHeadline"><span className="label label-primary">{index + 1}</span>
                             <strong> {article.headline.main}</strong></h3></a>
                             <h5>{article.byline.original}</h5></div>

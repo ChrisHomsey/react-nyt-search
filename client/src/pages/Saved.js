@@ -18,11 +18,12 @@ class Saved extends Component {
     loadSavedArticles = () => {
         API.getSaved()
             .then( res => this.setState( { articles: res.data }))
+            .then( () => console.log(this.state.articles))
             .catch(err => console.log(err));
     }
 
     handleArticleDelete = (id) => {
-        API.deleteArticle()
+        API.deleteArticle(id)
             .then(res => this.loadSavedArticles())
             .catch(err => console.log(err));
     }
@@ -38,15 +39,15 @@ class Saved extends Component {
                     <Col size="sm-12">
                     <Results title="Saved Stories">
                         {this.state.articles.map((article, index) => (
-                            <Item>
+                            <Item key={article._id}>
                             <DeleteBtn
                                 onClick={() => this.handleArticleDelete(article._id)}
                             />
                             
-                            <div class="well" id="article-well-1">
-                            <a target="_blank" href={article.web_url}><h3 class="articleHeadline"><span class="label label-primary">{index + 1}</span>
-                            <strong> {article.headline.main}</strong></h3></a>
-                            <h5>{article.byline.original}</h5></div>
+                            <div className="well">
+                            <a target="_blank" href={article.url}><h3 className="articleHeadline"><span className="label label-primary">{index + 1}</span>
+                            <strong> {article.headline}</strong></h3></a>
+                            <h5>{article.author}</h5></div>
                             </Item>
                         ))}
                         </Results>
